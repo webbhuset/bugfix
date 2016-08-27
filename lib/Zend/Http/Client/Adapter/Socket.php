@@ -357,6 +357,9 @@ class Zend_Http_Client_Adapter_Socket implements Zend_Http_Client_Adapter_Interf
 
                 do {
                     $line  = @fgets($this->socket);
+                    if ($line === false) {
+                        break;
+                    }
                     $this->_checkSocketReadTimeout();
 
                     $chunk = $line;
