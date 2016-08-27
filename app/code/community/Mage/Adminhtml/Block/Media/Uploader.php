@@ -155,12 +155,18 @@ class Mage_Adminhtml_Block_Media_Uploader extends Mage_Adminhtml_Block_Widget
 
     public function getPostMaxSize()
     {
-        return ini_get('post_max_size');
+        /**
+         * Fixed for HHVM
+         */
+        return ini_get('post_max_size') ? ini_get('post_max_size') : ini_get('hhvm.server.max_post_size');
     }
 
     public function getUploadMaxSize()
     {
-        return ini_get('upload_max_filesize');
+        /**
+         * Fixed for HHVM
+         */
+        return ini_get('upload_max_filesize') ? ini_get('upload_max_filesize') : ini_get('hhvm.server.upload.upload_max_file_size');
     }
 
     public function getDataMaxSize()
