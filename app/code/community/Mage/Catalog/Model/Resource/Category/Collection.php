@@ -309,8 +309,11 @@ class Mage_Catalog_Model_Resource_Category_Collection extends Mage_Catalog_Model
                             'main_table.category_id=e.entity_id',
                             array()
                         )
-                        ->where('e.entity_id = :entity_id')
-                        ->orWhere('e.path LIKE :c_path');
+                        /**
+                         * Removed orWhere. The "OR" part is joined to fix count error
+                         */
+                        ->where('e.entity_id = :entity_id OR e.path LIKE :c_path');
+
                     if ($websiteId) {
                         $select->join(
                             array('w' => $this->_productWebsiteTable),
