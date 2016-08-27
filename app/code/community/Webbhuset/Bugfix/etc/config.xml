@@ -1,0 +1,22 @@
+<config>
+    <modules>
+        <Webbhuset_Bugfix>
+            <version>1.0.0</version>
+        </Webbhuset_Bugfix>
+    </modules>
+    <global>
+        <helpers>
+            <whbugfix>
+                <class>Webbhuset_Bugfix_Helper</class>
+            </whbugfix>
+        </helpers>
+        <resources>
+            <whbugfix_setup>
+                <setup>
+                    <module>Webbhuset_Bugfix</module>
+                    <class>Mage_Core_Model_Resource_Setup</class>
+                </setup>
+            </whbugfix_setup>
+        </resources>
+    </global>
+</config>

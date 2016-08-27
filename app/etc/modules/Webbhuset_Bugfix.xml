@@ -1,0 +1,11 @@
+<config>
+    <modules>
+        <Webbhuset_Bugfix>
+            <active>true</active>
+            <codePool>community</codePool>
+            <depends>
+                <Mage_Catalog/>
+            </depends>
+        </Webbhuset_Bugfix>
+    </modules>
+</config>
