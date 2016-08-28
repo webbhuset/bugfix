@@ -723,13 +723,27 @@ class Mage_Catalog_Model_Url
         $parentPath = Mage::helper('catalog/category')->getCategoryUrlPath($parentPath,
                                                                            true, $category->getStoreId());
 
-        $requestPath = $parentPath . $urlKey . $categoryUrlSuffix;
+        $requestPath = $parentPath . $urlKey;
+
         if (isset($existingRequestPath) && $existingRequestPath == $requestPath . $suffix) {
+            return $existingRequestPath;
+        }
+
+        if (isset($existingRequestPath) && $this->_checkExistingRequestPath($existingRequestPath, $category, $suffix, $requestPath)) {
             return $existingRequestPath;
         }
 
         if ($this->_deleteOldTargetPath($requestPath, $idPath, $storeId)) {
             return $requestPath;
+        }
+
+        $validatedPath = $this->getResource()->checkRequestPaths(
+            array($requestPath.$suffix, $requestPath.'-'.$category->getId().$suffix),
+            $storeId
+        );
+
+        if ($validatedPath) {
+            return $validatedPath;
         }
 
         return $this->getUnusedPath($category->getStoreId(), $requestPath,
@@ -802,6 +816,10 @@ class Mage_Catalog_Model_Url
                 return $existingRequestPath;
             }
 
+            if ($this->_checkExistingRequestPath($existingRequestPath, $product, $suffix, $requestPath)) {
+                return $existingRequestPath;
+            }
+
             $existingRequestPath = preg_replace('/' . preg_quote($suffix, '/') . '$/', '', $existingRequestPath);
             /**
              * Check if existing request past can be used
@@ -837,6 +855,33 @@ class Mage_Catalog_Model_Url
          * Use unique path generator
          */
         return $this->getUnusedPath($storeId, $requestPath.$suffix, $idPath);
+    }
+
+    /**
+     * Checks if an existing request path containing an entity id that matches the entity.
+     *
+     * @param string $existingRequestPath
+     * @param Mage_Core_Model_Object $object
+     * @param string $suffix
+     * @param string $requestPath
+     * @access protected
+     * @return boolean
+     */
+    protected function _checkExistingRequestPath($existingRequestPath, $object, $suffix, $requestPath)
+    {
+        $rewrite    = $this->_rewrite;
+        $id         = $object->getId();
+        $idInUrl    = false;
+
+        if (preg_match("#^{$requestPath}-(\d+){$suffix}$#", $existingRequestPath, $match)) {
+            $idInUrl = $match[1];
+        }
+
+        if ($idInUrl && $id <= $idInUrl) {
+            return true;
+        }
+
+        return false;
     }
 
     /**
