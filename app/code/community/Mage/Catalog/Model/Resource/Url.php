@@ -702,7 +702,7 @@ class Mage_Catalog_Model_Resource_Url extends Mage_Core_Model_Resource_Db_Abstra
         if (!is_array($categoryIds)) {
             $categoryIds = array($categoryIds);
         }
-        $isActiveExpr = $adapter->getCheckSql('c.value_id > 0', 'c.value', 'c.value');
+        $isActiveExpr = $adapter->getCheckSql('c.value_id > 0', 'c.value', 'd.value');
         $select = $adapter->select()
             ->from(array('main_table' => $this->getTable('catalog/category')), array(
                 'main_table.entity_id',
@@ -725,7 +725,7 @@ class Mage_Catalog_Model_Resource_Url extends Mage_Core_Model_Resource_Db_Abstra
                 ->order('main_table.path');
         }
         $table = $this->getTable(array('catalog/category', 'int'));
-        $select->joinLeft(array('d' => $table),
+        $select->join(array('d' => $table),
             'd.attribute_id = :attribute_id AND d.store_id = 0 AND d.entity_id = main_table.entity_id',
             array()
         )
@@ -733,6 +733,10 @@ class Mage_Catalog_Model_Resource_Url extends Mage_Core_Model_Resource_Db_Abstra
             'c.attribute_id = :attribute_id AND c.store_id = :store_id AND c.entity_id = main_table.entity_id',
             array()
         );
+
+        if (!Mage::getStoreConfig('catalog/seo/rewrite_invisible_category', $storeId)) {
+            $select->where($isActiveExpr, 1);
+        }
 
         if ($storeId !== null) {
             $rootCategoryPath = $this->getStores($storeId)->getRootCategoryPath();
