@@ -965,6 +965,16 @@ class Mage_Catalog_Model_Resource_Url extends Mage_Core_Model_Resource_Db_Abstra
             ->where('e.entity_id > :entity_id')
             ->order('e.entity_id')
             ->limit($this->_productLimit);
+
+        if (!Mage::getStoreConfig('catalog/seo/rewrite_invisible_product', $storeId)) {
+            $this->_joinProductFilter($select, $storeId, 'visibility', [
+                'in' => Mage::getModel('catalog/product_visibility')->getVisibleInSiteIds()
+            ]);
+            $this->_joinProductFilter($select, $storeId, 'status', [
+                'eq' => Mage_Catalog_Model_Product_Status::STATUS_ENABLED
+            ]);
+        }
+
         if ($productIds !== null) {
             $select->where('e.entity_id IN(?)', $productIds);
         }
@@ -1005,6 +1015,76 @@ class Mage_Catalog_Model_Resource_Url extends Mage_Core_Model_Resource_Db_Abstra
         }
 
         return $products;
+    }
+
+    /**
+     * Joins a product filter sql.
+     *
+     * @param Varien_Db_Select $select
+     * @param int $storeId
+     * @param string $attributeCode
+     * @param string|array $cond
+     * @access protected
+     * @return void
+     */
+    protected function _joinProductFilter($select, $storeId, $attributeCode, $cond)
+    {
+        $adapter        = $this->_getReadAdapter();
+        $attribute      = $this->_getProductAttributeData($attributeCode);
+        $table          = $attribute['table'];
+        $attributeId    = (int)$attribute['attribute_id'];
+        $alias          = "at_{$attributeCode}";
+
+        $select->join(
+            ["{$alias}_default" => $table],
+            "{$alias}_default.entity_id = e.entity_id"
+                . " AND {$alias}_default.attribute_id = {$attributeId}"
+                . " AND {$alias}_default.store_id = 0",
+            []
+        );
+
+        if ($storeId != 0) {
+            $select ->joinLeft(
+                ["{$alias}_store" => $table],
+                "{$alias}_store.entity_id = e.entity_id"
+                    . " AND {$alias}_store.attribute_id = {$attributeId}"
+                    . " AND {$alias}_store.store_id = {$storeId}",
+                []
+            );
+
+            $where = $adapter->getCheckSql(
+                "{$alias}_store.value_id > 0",
+                "{$alias}_store.value",
+                "{$alias}_default.value"
+            );
+        } else {
+            $where = "{$alias}_default.value";
+        }
+
+        $select->where($adapter->prepareSqlCondition($where, $cond));
+    }
+
+    /**
+     * Returns an array of product attribute data.
+     *
+     * @param string $attributeCode
+     * @access protected
+     * @return array
+     */
+    protected function _getProductAttributeData($attributeCode)
+    {
+        if (!isset($this->_productAttributes[$attributeCode])) {
+            $attribute = $this->getProductModel()->getResource()->getAttribute($attributeCode);
+
+            $this->_productAttributes[$attributeCode] = array(
+                'entity_type_id' => $attribute->getEntityTypeId(),
+                'attribute_id'   => $attribute->getId(),
+                'table'          => $attribute->getBackend()->getTable(),
+                'is_global'      => $attribute->getIsGlobal()
+            );
+        }
+
+        return $this->_productAttributes[$attributeCode];
     }
 
     /**
