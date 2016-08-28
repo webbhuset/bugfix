@@ -1,0 +1,62 @@
+{
+    "name": "webbhuset/bugfix",
+    "type": "magento-module",
+    "license":"proprietary",
+    "description":"Magento core bug fixes. For more info, check https://github.com/webbhuset/bugfix",
+    "authors":[
+        {
+            "name":"Webbhuset",
+            "email":"info@webbhuset.com"
+        }
+    ],
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/webbhuset/bugfix.git"
+        }
+    ],
+    "extra": {
+        "map": [
+            [
+                "app/code/community/Webbhuset/Bugfix/",
+                "app/code/community/Webbhuset/Bugfix/"
+            ],
+            [
+                "app/code/community/Mage/Adminhtml/Block/Media/Uploader.php",
+                "app/code/community/Mage/Adminhtml/Block/Media/Uploader.php"
+            ],
+            [
+                "app/code/community/Mage/Catalog/Model/Resource/Category/Collection.php",
+                "app/code/community/Mage/Catalog/Model/Resource/Category/Collection.php"
+            ],
+            [
+                "app/code/community/Mage/CatalogRule/Model/Action/Index/Refresh.php",
+                "app/code/community/Mage/CatalogRule/Model/Action/Index/Refresh.php"
+            ],
+            [
+                "app/code/community/Mage/Catalog/Model/Resource/Url.php",
+                "app/code/community/Mage/Catalog/Model/Resource/Url.php"
+            ],
+            [
+                "app/code/community/Mage/Catalog/Model/Url.php",
+                "app/code/community/Mage/Catalog/Model/Url.php"
+            ],
+            [
+                "lib/Zend/Http/Client/Adapter/Socket.php",
+                "app/code/community/Zend/Http/Client/Adapter/Socket.php"
+            ],
+            [
+                "lib/Zend/XmlRpc/Value.php",
+                "app/code/community/Zend/XmlRpc/Value.php"
+            ],
+            [
+                "app/code/community/Mage/Shipping/Model/Carrier/Tablerate.php",
+                "app/code/community/Mage/Shipping/Model/Carrier/Tablerate.php"
+            ],
+            [
+                "app/etc/modules/Webbhuset_Bugfix.xml",
+                "app/etc/modules/Webbhuset_Bugfix.xml"
+            ]
+        ]
+    }
+}
