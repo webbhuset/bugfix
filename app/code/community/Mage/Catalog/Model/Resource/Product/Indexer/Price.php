@@ -121,6 +121,7 @@ class Mage_Catalog_Model_Resource_Product_Indexer_Price extends Mage_Index_Model
     {
         $write = $this->_getWriteAdapter();
         $this->beginTransaction();
+        $processIds = array_map('intval', $processIds);
         try {
             // remove old index
             $where = $write->quoteInto('entity_id IN(?)', $processIds);
