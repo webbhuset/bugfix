@@ -725,7 +725,7 @@ class Mage_Catalog_Model_Resource_Url extends Mage_Core_Model_Resource_Db_Abstra
                 ->order('main_table.path');
         }
         $table = $this->getTable(array('catalog/category', 'int'));
-        $select->join(array('d' => $table),
+        $select->joinLeft(array('d' => $table),
             'd.attribute_id = :attribute_id AND d.store_id = 0 AND d.entity_id = main_table.entity_id',
             array()
         )
@@ -735,7 +735,7 @@ class Mage_Catalog_Model_Resource_Url extends Mage_Core_Model_Resource_Db_Abstra
         );
 
         if (Mage::getStoreConfig('catalog/seo/skip_invisible_category', $storeId)) {
-            $select->where($isActiveExpr, 1);
+            $select->where($isActiveExpr . ' = 1 OR main_table.level < 2');
         }
 
         if ($storeId !== null) {
