@@ -734,7 +734,7 @@ class Mage_Catalog_Model_Resource_Url extends Mage_Core_Model_Resource_Db_Abstra
             array()
         );
 
-        if (!Mage::getStoreConfig('catalog/seo/rewrite_invisible_category', $storeId)) {
+        if (Mage::getStoreConfig('catalog/seo/skip_invisible_category', $storeId)) {
             $select->where($isActiveExpr, 1);
         }
 
@@ -966,7 +966,7 @@ class Mage_Catalog_Model_Resource_Url extends Mage_Core_Model_Resource_Db_Abstra
             ->order('e.entity_id')
             ->limit($this->_productLimit);
 
-        if (!Mage::getStoreConfig('catalog/seo/rewrite_invisible_product', $storeId)) {
+        if (Mage::getStoreConfig('catalog/seo/skip_invisible_product', $storeId)) {
             $this->_joinProductFilter($select, $storeId, 'visibility', [
                 'in' => Mage::getModel('catalog/product_visibility')->getVisibleInSiteIds()
             ]);

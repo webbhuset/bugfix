@@ -19,4 +19,12 @@
             </whbugfix_setup>
         </resources>
     </global>
+    <default>
+        <catalog>
+            <seo>
+                <skip_invisible_product>1</skip_invisible_product>
+                <skip_invisible_category>1</skip_invisible_category>
+            </seo>
+        </catalog>
+    </default>
 </config>
