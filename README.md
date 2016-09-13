@@ -7,6 +7,7 @@ To prevent confilicts with rewrites on existing projects, updated core files are
 
 Fixed bugs
 
+* Datetime Attribute resets to 1970 on Product save
 * New 301 redirects are created every time url rewrites are reindexed.
 * Url rewrites are created for non visible categories and products.
 * Catalog rules disappears every night.
