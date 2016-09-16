@@ -307,6 +307,10 @@ class Mage_CatalogRule_Model_Rule extends Mage_Rule_Model_Abstract
         $this->_invalidateCache();
     }
 
+    protected function _getAllRules()
+    {
+        return $this->getResourceCollection()->getItems();
+    }
     /**
      * Apply all price rules, invalidate related cache and refresh price index
      *
@@ -314,7 +318,10 @@ class Mage_CatalogRule_Model_Rule extends Mage_Rule_Model_Abstract
      */
     public function applyAll()
     {
-        $this->getResourceCollection()->walk(array($this->_getResource(), 'updateRuleProductData'));
+        $allRules = $this->_getAllRules();
+        while ($rule = array_shift($allRules)) {
+            $this->_getResource()->updateRuleProductData($rule);
+        }
         $this->_getResource()->applyAllRules();
         $this->_invalidateCache();
         $indexProcess = Mage::getSingleton('index/indexer')->getProcessByCode('catalog_product_price');
