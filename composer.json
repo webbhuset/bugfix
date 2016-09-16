@@ -22,6 +22,10 @@
                 "app/code/community/Webbhuset/Bugfix/"
             ],
             [
+                "app/code/community/Varien/Simplexml/Element.php",
+                "app/code/community/Varien/Simplexml/Element.php"
+            ],
+            [
                 "app/code/community/Mage/Adminhtml/Block/Media/Uploader.php",
                 "app/code/community/Mage/Adminhtml/Block/Media/Uploader.php"
             ],

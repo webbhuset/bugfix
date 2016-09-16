@@ -344,7 +344,7 @@ class Varien_Simplexml_Element extends SimpleXMLElement
      */
     public function appendChild($source)
     {
-        if ($source->children()) {
+        if (count($source->children())) {
             /**
              * @see http://bugs.php.net/bug.php?id=41867 , fixed in 5.2.4
              */
