@@ -11,6 +11,7 @@ Fixed bugs
 * New 301 redirects are created every time url rewrites are reindexed.
 * Url rewrites are created for non visible categories and products.
 * Catalog rules disappears every night.
+* Apply catalog rules consumes a lot of memory.
 * Notice: Undefined variable $freePackageValue in table rate shipping method.
 * Wrong count returned from anchor categories with loadProductCount on categories.
 * HHVM: Error in Zend_XmlRpc_Value, Error creating xmlrpc value

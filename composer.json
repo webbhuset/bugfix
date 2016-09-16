@@ -64,7 +64,11 @@
             [
                 "app/etc/modules/Webbhuset_Bugfix.xml",
                 "app/etc/modules/Webbhuset_Bugfix.xml"
-            ]
+            ],
+            [
+                "app/code/community/Mage/CatalogRule/Model/Rule.php",
+                "app/code/community/Mage/CatalogRule/Model/Rule.php"
+            ],
         ]
     }
 }
