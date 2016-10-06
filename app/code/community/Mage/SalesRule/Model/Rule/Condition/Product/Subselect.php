@@ -28,6 +28,12 @@
 class Mage_SalesRule_Model_Rule_Condition_Product_Subselect
     extends Mage_SalesRule_Model_Rule_Condition_Product_Combine
 {
+    /**
+     * Products attributes info
+     * @var array
+     */
+    protected $_isQuoteBeingValidated = false;
+
     public function __construct()
     {
         parent::__construct();
@@ -96,12 +102,32 @@ class Mage_SalesRule_Model_Rule_Condition_Product_Subselect
     }
 
     /**
+     * Validate a condition with the checking of the child value
+     * @param Varien_Object $object
+     *
+     * @return bool
+     */
+    public function validate(Varien_Object $object)
+    {
+        if (!$this->_isQuoteBeingValidated) {
+            $this->_isQuoteBeingValidated = true;
+            $valid = $this->_validateQuote($object);
+            $this->_isQuoteBeingValidated = false;
+        } else {
+
+            return parent::validate($object);
+        }
+
+        return $valid;
+    }
+
+    /**
      * validate
      *
      * @param Varien_Object $object Quote
      * @return boolean
      */
-    public function validate(Varien_Object $object)
+    protected function _validateQuote(Varien_Object $object)
     {
         if (!$this->getConditions()) {
             return false;

@@ -18,5 +18,6 @@ Fixed bugs
 * HHVM: Error Invalid chunk size "" unable to read chunked body
 * HHVM: Media uploader on edit product in admin is gone.
 * Negative product position does not work on anchor categories.
+* Subselect condition in Shopping Cart Price Rules causes "Fatal error: Stack overflow".
 
 Check the [Closed Issues](https://github.com/webbhuset/bugfix/issues?q=is%3Aissue+is%3Aclosed) page for more info.
