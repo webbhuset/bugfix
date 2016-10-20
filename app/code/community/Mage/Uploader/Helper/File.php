@@ -693,7 +693,7 @@ class Mage_Uploader_Helper_File extends Mage_Core_Helper_Abstract
      */
     public function getPostMaxSize()
     {
-        return ini_get('post_max_size');
+        return ini_get('post_max_size') ? ini_get('post_max_size') : ini_get('hhvm.server.max_post_size');
     }
 
     /**
@@ -703,7 +703,7 @@ class Mage_Uploader_Helper_File extends Mage_Core_Helper_Abstract
      */
     public function getUploadMaxSize()
     {
-        return ini_get('upload_max_filesize');
+        return ini_get('upload_max_filesize') ? ini_get('upload_max_filesize') : ini_get('hhvm.server.upload.upload_max_file_size');
     }
 
     /**
