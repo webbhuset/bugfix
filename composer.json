@@ -54,6 +54,10 @@
                 "app/code/community/Mage/Catalog/Model/Url.php"
             ],
             [
+                "app/code/community/Mage/Uploader/Helper/File.php",
+                "app/code/community/Mage/Uploader/Helper/File.php"
+            ],
+            [
                 "lib/Zend/Http/Client/Adapter/Socket.php",
                 "app/code/community/Zend/Http/Client/Adapter/Socket.php"
             ],
