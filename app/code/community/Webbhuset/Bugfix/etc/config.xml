@@ -19,6 +19,17 @@
             </whbugfix_setup>
         </resources>
     </global>
+    <admin>
+        <routers>
+            <adminhtml>
+                <args>
+                    <modules>
+                        <Webbhuset_Bugfix before="Mage_Adminhtml">Webbhuset_Bugfix</Webbhuset_Bugfix>
+                    </modules>
+                </args>
+            </adminhtml>
+        </routers>
+    </admin>
     <default>
         <catalog>
             <seo>
