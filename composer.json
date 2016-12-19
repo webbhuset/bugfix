@@ -54,6 +54,10 @@
                 "app/code/community/Mage/Catalog/Model/Url.php"
             ],
             [
+                "app/code/community/Mage/Core/Model/Config.php",
+                "app/code/community/Mage/Core/Model/Config.php"
+            ],
+            [
                 "app/code/community/Mage/Uploader/Helper/File.php",
                 "app/code/community/Mage/Uploader/Helper/File.php"
             ],
