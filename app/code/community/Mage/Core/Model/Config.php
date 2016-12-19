@@ -44,6 +44,13 @@ class Mage_Core_Model_Config extends Mage_Core_Model_Config_Base
     protected $_useCache = false;
 
     /**
+     * Flag which allow use cache logic
+     *
+     * @var bool
+     */
+    protected $_canSaveCache = true;
+
+    /**
      * Instructions for spitting config cache
      * array(
      *      $sectionName => $recursionLevel
@@ -414,8 +421,19 @@ class Mage_Core_Model_Config extends Mage_Core_Model_Config_Base
      */
     protected function _canUseCacheForInit()
     {
-        return Mage::app()->useCache('config') && $this->_allowCacheForInit
-            && !$this->_loadCache($this->_getCacheLockId());
+        if (!Mage::app()->useCache('config')) {
+            return false;
+        }
+        if (!$this->_allowCacheForInit) {
+            return false;
+        }
+        if ($this->_loadCache($this->_getCacheLockId())) {
+            $this->_canSaveCache = false;
+            return false;
+        }
+
+        return true;
+
     }
 
     /**
@@ -457,6 +475,11 @@ class Mage_Core_Model_Config extends Mage_Core_Model_Config_Base
             return $this;
         }
 
+        if (!$this->_canSaveCache) {
+            return $this;
+        }
+
+        $this->_saveCache(time(), $cacheLockId, array(), 60);
         if (!empty($this->_cacheSections)) {
             $xml = clone $this->_xml;
             foreach ($this->_cacheSections as $sectionName => $level) {
@@ -465,10 +488,12 @@ class Mage_Core_Model_Config extends Mage_Core_Model_Config_Base
             }
             $this->_cachePartsForSave[$this->getCacheId()] = $xml->asNiceXml('', false);
         } else {
-            return parent::saveCache($tags);
+            parent::saveCache($tags);
+            $this->_removeCache($cacheLockId);
+
+            return $this;
         }
 
-        $this->_saveCache(time(), $cacheLockId, array(), 60);
         $this->removeCache();
         foreach ($this->_cachePartsForSave as $cacheId => $cacheData) {
             $this->_saveCache($cacheData, $cacheId, $tags, $this->getCacheLifetime());
