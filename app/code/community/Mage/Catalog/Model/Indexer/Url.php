@@ -198,7 +198,10 @@ class Mage_Catalog_Model_Indexer_Url extends Mage_Index_Model_Indexer_Abstract
     {
         $category = $event->getDataObject();
         if (!$category->getInitialSetupFlag() && $category->getLevel() > 1) {
-            if ($category->dataHasChangedFor('url_key') || $category->getIsChangedProductList()) {
+            if ($category->dataHasChangedFor('url_key')
+                || $category->getIsChangedProductList()
+                || $category->dataHasChangedFor('is_active')
+            ) {
                 $event->addNewData('rewrite_category_ids', array($category->getId()));
             }
             /**
