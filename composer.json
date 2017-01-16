@@ -42,6 +42,10 @@
                 "app/code/community/Mage/Catalog/Model/Resource/Url.php"
             ],
             [
+                "app/code/community/Mage/Sales/Model/Resource/Order.php",
+                "app/code/community/Mage/Sales/Model/Resource/Order.php"
+            ],
+            [
                 "app/code/community/Mage/Adminhtml/Block/Widget/Form.php",
                 "app/code/community/Mage/Adminhtml/Block/Widget/Form.php"
             ],
