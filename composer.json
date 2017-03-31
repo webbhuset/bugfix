@@ -54,6 +54,10 @@
                 "app/code/community/Mage/Catalog/Model/Resource/Product/Indexer/Price.php"
             ],
             [
+                "app/code/community/Mage/Catalog/Model/Indexer/Url.php",
+                "app/code/community/Mage/Catalog/Model/Indexer/Url.php"
+            ],
+            [
                 "app/code/community/Mage/Catalog/Model/Url.php",
                 "app/code/community/Mage/Catalog/Model/Url.php"
             ],
