@@ -182,7 +182,8 @@ class Mage_Catalog_Model_Indexer_Url extends Mage_Index_Model_Indexer_Abstract
         $product = $event->getDataObject();
         $dataChange = $product->dataHasChangedFor('url_key')
             || $product->getIsChangedCategories()
-            || $product->getIsChangedWebsites();
+            || $product->getIsChangedWebsites()
+            || $product->dataHasChangedFor('status');
 
         if (!$product->getExcludeUrlRewrite() && $dataChange) {
             $event->addNewData('rewrite_product_ids', array($product->getId()));
