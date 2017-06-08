@@ -26,10 +26,6 @@
                 "app/code/community/Varien/Simplexml/Element.php"
             ],
             [
-                "app/code/community/Mage/Adminhtml/Block/Media/Uploader.php",
-                "app/code/community/Mage/Adminhtml/Block/Media/Uploader.php"
-            ],
-            [
                 "app/code/community/Mage/Catalog/Model/Resource/Category/Collection.php",
                 "app/code/community/Mage/Catalog/Model/Resource/Category/Collection.php"
             ],
