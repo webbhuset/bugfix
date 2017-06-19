@@ -98,12 +98,18 @@ class Mage_Core_Model_File_Validator_Image
                     imagecopyresampled($img, $image, 0, 0, 0, 0, $imageWidth, $imageHeight, $imageWidth, $imageHeight);
                     switch ($fileType) {
                         case IMAGETYPE_GIF:
+                            imagecopyresampled($img, $image, 0, 0, 0, 0, $imageWidth, $imageHeight, $imageWidth, $imageHeight);
                             imagegif($img, $filePath);
                             break;
                         case IMAGETYPE_JPEG:
+                            imagecopyresampled($img, $image, 0, 0, 0, 0, $imageWidth, $imageHeight, $imageWidth, $imageHeight);
                             imagejpeg($img, $filePath, 100);
                             break;
                         case IMAGETYPE_PNG:
+                            imagecolortransparent($img, imagecolorallocatealpha($img, 0, 0, 0, 127));
+                            imagealphablending($img, false);
+                            imagesavealpha($img, true);
+                            imagecopyresampled($img, $image, 0, 0, 0, 0, $imageWidth, $imageHeight, $imageWidth, $imageHeight);
                             imagepng($img, $filePath);
                             break;
                         default:
