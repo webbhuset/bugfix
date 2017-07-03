@@ -86,6 +86,10 @@
                 "app/code/community/Mage/CatalogRule/Model/Rule.php"
             ],
             [
+                "app/code/community/Mage/Core/Model/File/Validator/Image.php",
+                "app/code/community/Mage/Core/Model/File/Validator/Image.php"
+            ],
+            [
                 "app/code/community/Mage/SalesRule/Model/Rule/Condition/Product/Subselect.php",
                 "app/code/community/Mage/SalesRule/Model/Rule/Condition/Product/Subselect.php"
             ]
