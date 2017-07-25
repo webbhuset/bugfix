@@ -314,7 +314,7 @@ class Enterprise_TargetRule_Model_Resource_Index extends Mage_Index_Model_Resour
                     if (is_array($callback)) {
                         $v = $this->{$callback[0]}($v, $callback[1]);
                     } else {
-                        $v = $this->$callback($v);
+                        $v = $this->{$callback}($v);
                     }
                 }
             }

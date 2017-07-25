@@ -458,7 +458,7 @@ class Mage_Connect_Packager
                 foreach($dependencies as $row) {
                     foreach($flds as $key) {
                         $varName = "p".ucfirst($key);
-                        $$varName = $row[$key];
+                        ${$varName} = $row[$key];
                     }
                     $method = __FUNCTION__;
                     $keyInner = $pChannel . "/" . $pName;
@@ -540,7 +540,7 @@ class Mage_Connect_Packager
                 foreach($dependencies as $row) {
                     foreach($flds as $key) {
                         $varName = "p".ucfirst($key);
-                        $$varName = $row[$key];
+                        ${$varName} = $row[$key];
                     }
                     $method = __FUNCTION__;
                     $keyInner = $pChannel . "/" . $pName;
@@ -564,13 +564,13 @@ class Mage_Connect_Packager
 
                         $names = array("pMin","pMax","hasMin","hasMax");
                         for($i=0, $c=count($names); $i<$c; $i++) {
-                            if(!isset($$names[$i])) {
+                            if(!isset(${$names[$i]})) {
                                 continue;
                             }
-                            if(false !== $$names[$i]) {
+                            if(false !== ${$names[$i]}) {
                                 continue;
                             }
-                            $$names[$i] = $i % 2 == 0 ? "0" : "999999999";
+                            ${$names[$i]} = $i % 2 == 0 ? "0" : "999999999";
                         }
 
                         if(!$cache->hasVersionRangeIntersect($pMin,$pMax, $hasMin, $hasMax)) {

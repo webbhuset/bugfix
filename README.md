@@ -19,5 +19,6 @@ Fixed bugs
 * HHVM: Media uploader on edit product in admin is gone.
 * Negative product position does not work on anchor categories.
 * Subselect condition in Shopping Cart Price Rules causes "Fatal error: Stack overflow".
+* PHP7 incompatibilities, most due to [this change](http://php.net/manual/en/migration70.incompatible.php#migration70.incompatible.variable-handling.indirect).
 
 Check the [Closed Issues](https://github.com/webbhuset/bugfix/issues?q=is%3Aissue+is%3Aclosed) page for more info.
