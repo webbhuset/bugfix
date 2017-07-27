@@ -88,6 +88,10 @@
             [
                 "app/code/community/Mage/SalesRule/Model/Rule/Condition/Product/Subselect.php",
                 "app/code/community/Mage/SalesRule/Model/Rule/Condition/Product/Subselect.php"
+            ],
+            [
+                "shell/update-order-grid.php",
+                "shell/update-order-grid.php"
             ]
         ]
     }
