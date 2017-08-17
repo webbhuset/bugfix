@@ -137,7 +137,7 @@ class Error_Processor
     public function __construct()
     {
         $this->_errorDir  = dirname(__FILE__) . '/';
-        $this->_reportDir = dirname($this->_errorDir) . '/var/report/';
+        $this->_reportDir = Mage::getBaseDir('var'). '/report/';
 
         if (!empty($_SERVER['SCRIPT_NAME'])) {
             if (in_array(basename($_SERVER['SCRIPT_NAME'],'.php'), array('404','503','report'))) {
