@@ -108,6 +108,10 @@
             [
                 "app/code/community/Mage/Sales/Model/Config/Ordered.php",
                 "app/code/community/Mage/Sales/Model/Config/Ordered.php"
+            ],
+            [
+                "errors/processor.php",
+                "errors/processor.php"
             ]
         ]
     }
