@@ -1,7 +1,7 @@
-# Magento 1.9.3.4 Bugfixes
+# Magento 1.9.3.6 Bugfixes
 
-This repo contains a variety of bug fixes for Magento Community version 1.9.3.4.
-At this moment, only version 1.9.3.4 is maintained. Some of these fixes might not work on different versions.
+This repo contains a variety of bug fixes for Magento Open Source version 1.9.3.6.
+At this moment, only version 1.9.3.6 is maintained. Some of these fixes might not work on different versions.
 
 To prevent confilicts with rewrites on existing projects, updated core files are moved into app/code/community/Mage and changed.
 
@@ -12,7 +12,6 @@ Fixed bugs
 * Url rewrites are created for non visible categories and products.
 * Catalog rules disappears every night.
 * Apply catalog rules consumes a lot of memory.
-* Notice: Undefined variable $freePackageValue in table rate shipping method.
 * Wrong count returned from anchor categories with loadProductCount on categories.
 * HHVM: Error in Zend\_XmlRpc\_Value, Error creating xmlrpc value
 * HHVM: Error Invalid chunk size "" unable to read chunked body

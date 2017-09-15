@@ -74,10 +74,6 @@
                 "app/code/community/Zend/XmlRpc/Value.php"
             ],
             [
-                "app/code/community/Mage/Shipping/Model/Carrier/Tablerate.php",
-                "app/code/community/Mage/Shipping/Model/Carrier/Tablerate.php"
-            ],
-            [
                 "app/etc/modules/Webbhuset_Bugfix.xml",
                 "app/etc/modules/Webbhuset_Bugfix.xml"
             ],
