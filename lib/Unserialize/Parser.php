@@ -47,6 +47,7 @@ class Unserialize_Parser
      */
     public function unserialize($str)
     {
+        $str = (string) $str;
         $reader = new Unserialize_Reader_Arr();
         $prevChar = null;
         for ($i = 0; $i < strlen($str); $i++) {
