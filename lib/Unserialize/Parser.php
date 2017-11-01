@@ -48,6 +48,11 @@ class Unserialize_Parser
     public function unserialize($str)
     {
         $str = (string) $str;
+        if (0 == strlen($str)) {
+
+            return false;
+        }
+
         $reader = new Unserialize_Reader_Arr();
         $prevChar = null;
         for ($i = 0; $i < strlen($str); $i++) {
