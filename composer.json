@@ -98,14 +98,6 @@
                 "app/code/community/Mage/Connect/Packager.php"
             ],
             [
-                "app/code/community/Mage/Core/Helper/Data.php",
-                "app/code/community/Mage/Core/Helper/Data.php"
-            ],
-            [
-                "app/code/community/Mage/Core/Model/Resource/Session.php",
-                "app/code/community/Mage/Core/Model/Resource/Session.php"
-            ],
-            [
                 "app/code/community/Mage/Sales/Model/Config/Ordered.php",
                 "app/code/community/Mage/Sales/Model/Config/Ordered.php"
             ],
